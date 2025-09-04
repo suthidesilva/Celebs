@@ -1,0 +1,21 @@
+# Ignore node modules
+node_modules/
+**/node_modules/
+
+# Ignore .NET build artifacts
+bin/
+obj/
+**/bin/
+**/obj/
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore Mac system files
+.DS_Store
+
+# Ignore logs
+*.log
+
+# Ignore environment files
+.env

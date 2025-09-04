@@ -1,0 +1,42 @@
+<div
+  [class]="viewMode === 'grid' 
+    ? 'relative bg-white rounded-2xl shadow-md p-4 w-full max-w-sm' 
+    : 'relative bg-white rounded-xl shadow p-2 w-full max-w-xs flex items-center'"
+  [style]="viewMode === 'list' ? 'min-width: 320px; min-height: 128px' : ''"
+>
+  <button
+    (click)="onDelete()"
+    class="absolute top-3 right-3 text-gray-400 hover:text-red-600 transition-colors"
+    aria-label="Delete"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class="w-6 h-6">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+  
+  <ng-container *ngIf="viewMode === 'grid'; else listView">
+    <img
+      [src]="celeb.image"
+      [alt]="celeb.name"
+      class="w-full h-64 object-cover rounded-xl mb-4"
+    />
+  </ng-container>
+  
+  <ng-template #listView>
+    <img
+      [src]="celeb.image"
+      [alt]="celeb.name"
+      class="w-1/2 h-32 object-cover rounded mr-4"
+      style="min-width: 96px; max-width: 128px"
+    />
+  </ng-template>
+  
+  <div [class]="viewMode === 'grid' ? '' : 'flex-1'">
+    <h2 [class]="viewMode === 'grid' ? 'text-xl font-bold' : 'text-base font-semibold'">
+      {{celeb.name}}
+    </h2>
+            <p class="text-gray-600 text-sm">Role: {{celeb.roles && celeb.roles.length > 0 ? celeb.roles.join(', ') : 'N/A'}}</p>
+    <p class="text-gray-500 text-sm">Gender: {{celeb.gender}}</p>
+    <p class="text-gray-500 text-sm">Born: {{celeb.birthDate || 'Unknown'}}</p>
+  </div>
+</div>

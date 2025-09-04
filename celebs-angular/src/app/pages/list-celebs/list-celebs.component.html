@@ -1,0 +1,48 @@
+<div class="min-h-screen bg-gray-100 p-8">
+  <h1
+    class="text-5xl font-extrabold text-center mb-8 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent drop-shadow-lg tracking-wide"
+    style="letter-spacing: 0.05em"
+  >
+    {{appConstants.appName}}
+  </h1>
+  
+  <app-celeb-toolbar
+    [viewMode]="viewMode"
+    (toggleView)="toggleViewMode()"
+    (reset)="handleReset()"
+  ></app-celeb-toolbar>
+
+  <div *ngIf="loading" class="flex justify-center items-center min-h-screen">
+    <svg class="animate-spin h-12 w-12 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+    </svg>
+  </div>
+
+  <div *ngIf="!loading">
+    <div
+      cdkDropList
+      (cdkDropListDropped)="onDragDrop($event)"
+      [class]="viewMode === 'grid' 
+        ? 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center' 
+        : 'flex flex-col flex-wrap gap-2'"
+    >
+      <div
+        *ngFor="let celeb of celebs; let i = index"
+        cdkDrag
+        [cdkDragData]="celeb"
+        class="cursor-move"
+      >
+        <app-celeb-card
+          [celeb]="celeb"
+          [viewMode]="viewMode"
+          (deleteCeleb)="onDeleteCeleb($event)"
+        ></app-celeb-card>
+      </div>
+    </div>
+  </div>
+
+  <footer class="text-center text-gray-400 py-4">
+    &copy; {{getCurrentYear()}} {{appConstants.appName}}
+  </footer>
+</div>

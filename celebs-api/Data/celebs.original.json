@@ -1,0 +1,26 @@
+[
+  {
+    "id": "c2d9629c-0b2a-4baf-927d-6fdc81e17e11",
+    "name": "Robert Downey Jr.",
+    "birthDate": "1965-04-04",
+    "gender": "Male",
+    "role": "Known for Iron Man",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/50/Robert_Downey_Jr_2014_Comic_Con_%28cropped%29.jpg"
+  },
+  {
+    "id": "f89b7eb0-45c4-42b3-b36d-bc9fbb3fd214",
+    "name": "Scarlett Johansson",
+    "birthDate": "1984-11-22",
+    "gender": "Female",
+    "role": "Known for Black Widow",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Scarlett_Johansson_in_Kuwait_01b-tweaked.jpg/800px-Scarlett_Johansson_in_Kuwait_01b-tweaked.jpg"
+  },
+  {
+    "id": "28f5cf9d-b435-4081-bb26-7a15f292377e",
+    "name": "Tom Hanks",
+    "birthDate": "1956-07-09",
+    "gender": "Male",
+    "role": "Known for Forrest Gump",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Tom_Hanks_TIFF_2019.jpg/800px-Tom_Hanks_TIFF_2019.jpg"
+  }
+]
