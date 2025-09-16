@@ -1,0 +1,98 @@
+.theme-toggle {
+  @apply relative w-14 h-14 rounded-full bg-gray-200 dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 
+         hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300 ease-in-out
+         focus:outline-none focus:ring-4 focus:ring-blue-500/20 dark:focus:ring-blue-400/20
+         shadow-lg hover:shadow-xl active:scale-95;
+}
+
+.theme-toggle-container {
+  @apply relative w-full h-full flex items-center justify-center overflow-hidden;
+}
+
+.sun-icon,
+.moon-icon {
+  @apply absolute w-6 h-6 text-yellow-500 dark:text-yellow-400 transition-all duration-500 ease-in-out;
+}
+
+.sun-icon {
+  @apply opacity-100 scale-100 rotate-0;
+}
+
+.sun-icon.active {
+  @apply opacity-100 scale-100 rotate-180;
+}
+
+.sun-icon:not(.active) {
+  @apply opacity-0 scale-75 -rotate-90;
+}
+
+.moon-icon {
+  @apply opacity-0 scale-75 rotate-90;
+}
+
+.moon-icon.active {
+  @apply opacity-100 scale-100 rotate-0;
+}
+
+.moon-icon:not(.active) {
+  @apply opacity-0 scale-75 rotate-90;
+}
+
+/* Hover effects */
+.theme-toggle:hover .sun-icon.active {
+  @apply text-yellow-400 dark:text-yellow-300;
+}
+
+.theme-toggle:hover .moon-icon.active {
+  @apply text-blue-300 dark:text-blue-200;
+}
+
+/* Pulse animation for active state */
+.sun-icon.active {
+  animation: sunPulse 2s ease-in-out infinite;
+}
+
+.moon-icon.active {
+  animation: moonGlow 2s ease-in-out infinite;
+}
+
+@keyframes sunPulse {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(180deg);
+  }
+}
+
+@keyframes moonGlow {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 0px currentColor);
+  }
+  50% {
+    transform: scale(1.05) rotate(0deg);
+    filter: drop-shadow(0 0 8px currentColor);
+  }
+}
+
+/* Dark mode specific styles */
+.dark .theme-toggle {
+  @apply bg-gray-800 border-gray-600;
+}
+
+.dark .theme-toggle:hover {
+  @apply bg-gray-700;
+}
+
+/* Responsive sizing */
+@media (max-width: 640px) {
+  .theme-toggle {
+    @apply w-12 h-12;
+  }
+  
+  .sun-icon,
+  .moon-icon {
+    @apply w-5 h-5;
+  }
+}
