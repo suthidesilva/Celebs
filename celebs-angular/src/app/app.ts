@@ -8,12 +8,15 @@ import { ThemeService } from './services/theme.service';
   standalone: true,
   imports: [RouterOutlet, ThemeToggleComponent],
   template: `
-    <!-- Theme Toggle - Fixed position top right -->
-    <div class="fixed top-4 right-4 z-50">
-      <app-theme-toggle></app-theme-toggle>
+    <!-- Royal Background with Image and Animated Gradient -->
+    <div class="royal-bg min-h-screen">
+      <!-- Theme Toggle - Fixed position top right -->
+      <div class="fixed top-4 right-4 z-50">
+        <app-theme-toggle></app-theme-toggle>
+      </div>
+      
+      <router-outlet></router-outlet>
     </div>
-    
-    <router-outlet></router-outlet>
   `
 })
 export class AppComponent {

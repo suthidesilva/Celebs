@@ -1,14 +1,16 @@
 <button
   (click)="toggleTheme()"
-  class="theme-toggle"
+  class="glass-card-dark w-16 h-16 rounded-full border border-royal-500/50 hover:border-royal-400 transition-all duration-300 hover:scale-110 hover:shadow-royal-glow group"
   [attr.aria-label]="isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
   [attr.title]="isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
 >
-  <div class="theme-toggle-container">
+  <div class="flex items-center justify-center w-full h-full">
     <!-- Sun Icon - Shows in dark mode (to switch to light) -->
     <svg
-      class="sun-icon"
+      class="w-7 h-7 text-gold-400 transition-all duration-500 group-hover:animate-glow-pulse"
       [class.active]="isDark()"
+      [class.opacity-0]="!isDark()"
+      [class.scale-0]="!isDark()"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
@@ -20,8 +22,10 @@
     
     <!-- Moon Icon - Shows in light mode (to switch to dark) -->
     <svg
-      class="moon-icon"
+      class="w-7 h-7 text-royal-300 transition-all duration-500 group-hover:animate-glow-pulse absolute"
       [class.active]="isLight()"
+      [class.opacity-0]="!isLight()"
+      [class.scale-0]="!isLight()"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"

@@ -1,6 +1,6 @@
-<div class="min-h-screen bg-gray-100 dark:bg-gray-900 p-8 transition-colors duration-300">
+<div class="min-h-screen p-8 transition-colors duration-300">
   <h1
-    class="text-5xl font-extrabold text-center mb-8 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent drop-shadow-lg tracking-wide"
+    class="text-6xl font-extrabold text-center mb-8 text-royal-gradient text-shadow-royal tracking-wide animate-glow-pulse"
     style="letter-spacing: 0.05em"
   >
     {{appConstants.appName}}
@@ -14,10 +14,13 @@
   ></app-celeb-toolbar>
 
   <div *ngIf="loading" class="flex justify-center items-center min-h-screen">
-    <svg class="animate-spin h-12 w-12 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-    </svg>
+    <div class="glass-card-dark p-8 rounded-2xl">
+      <svg class="animate-spin h-16 w-16 text-royal-400 glow-royal" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+      </svg>
+      <p class="text-royal-200 mt-4 text-center font-medium">Loading celebrities...</p>
+    </div>
   </div>
 
   <div *ngIf="!loading">
@@ -43,7 +46,11 @@
     </div>
   </div>
 
-  <footer class="text-center text-gray-400 dark:text-gray-500 py-4 transition-colors duration-300">
-    &copy; {{getCurrentYear()}} {{appConstants.appName}}
+  <footer class="text-center text-royal-300 py-8 mt-12">
+    <div class="glass-card-dark px-6 py-4 rounded-xl inline-block">
+      <p class="text-royal-200 font-medium">
+        &copy; {{getCurrentYear()}} {{appConstants.appName}}
+      </p>
+    </div>
   </footer>
 </div>
