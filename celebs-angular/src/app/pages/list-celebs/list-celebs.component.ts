@@ -18,9 +18,11 @@ import { appConstants } from '../../config/app.constants';
 })
 export class ListCelebsComponent implements OnInit, OnDestroy {
   celebs: Celeb[] = [];
+  filteredCelebs: Celeb[] = [];
   loading = true;
   viewMode: 'grid' | 'list' = appConstants.defaultViewMode as 'grid' | 'list';
   sortBy: 'name' | 'gender' | 'date' = appConstants.defaultSortBy as 'name' | 'gender' | 'date';
+  searchTerm = '';
   appConstants = appConstants;
   
   private destroy$ = new Subject<void>();
@@ -42,11 +44,12 @@ export class ListCelebsComponent implements OnInit, OnDestroy {
 
   fetchCelebs(): void {
     this.loading = true;
-    this.celebService.getAllCelebs(this.sortBy)
+    this.celebService.getAllCelebs(this.sortBy, this.searchTerm)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (celebs) => {
           this.celebs = celebs;
+          this.filteredCelebs = celebs;
           this.loading = false;
         },
         error: (err) => {
@@ -54,6 +57,11 @@ export class ListCelebsComponent implements OnInit, OnDestroy {
           this.loading = false;
         }
       });
+  }
+
+  onSearchChange(searchTerm: string): void {
+    this.searchTerm = searchTerm;
+    this.fetchCelebs();
   }
 
   handleReset(): void {

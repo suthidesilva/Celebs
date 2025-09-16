@@ -5,11 +5,11 @@ namespace CelebApi.Models;
 public class CelebCreateDto
 {
     [Required]
-    public string Name { get; set; }
+    public required string Name { get; set; }
     public string? BirthDate { get; set; }
     [Required]
-    public string Gender { get; set; }
+    public required string Gender { get; set; }
     [Required]
-    public string Role { get; set; }
+    public required List<string> Roles { get; set; } = new List<string>();
     public string? Image { get; set; }
 }

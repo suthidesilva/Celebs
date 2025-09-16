@@ -70,4 +70,22 @@ public static class ValidationHelper
             errors.Add(new ValidationResult("Role is required.", new[] { "Role" }));
         }
     }
+
+    public static void ValidateRoles(List<string>? roles, List<ValidationResult> errors, bool required = true)
+    {
+        if (required && (roles == null || roles.Count == 0))
+        {
+            errors.Add(new ValidationResult("At least one role is required.", new[] { "Roles" }));
+            return;
+        }
+
+        if (roles != null)
+        {
+            var emptyRoles = roles.Where(r => string.IsNullOrWhiteSpace(r)).ToList();
+            if (emptyRoles.Any())
+            {
+                errors.Add(new ValidationResult("Roles cannot be empty.", new[] { "Roles" }));
+            }
+        }
+    }
 }

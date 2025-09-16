@@ -12,7 +12,7 @@ public static class CelebCreateValidator
 
         ValidateName(dto.Name, errors, required: true);
         ValidateGender(dto.Gender, errors, required: true);
-        ValidateRole(dto.Role, errors, required: true);
+        ValidateRoles(dto.Roles, errors, required: true);
         ValidateBirthDate(dto.BirthDate, errors);
         ValidateImageUrl(dto.Image, errors);
 

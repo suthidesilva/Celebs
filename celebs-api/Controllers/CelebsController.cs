@@ -12,10 +12,10 @@ public class CelebsController(CelebService service) : ControllerBase
     private readonly CelebService _service = service;
 
     [HttpGet("v1/celebs")]
-    public ActionResult<List<Celeb>> GetAll()
+    public ActionResult<List<Celeb>> GetAll([FromQuery] string? search = null)
     {
-        Console.WriteLine("[Controller: GetAll] 📥 Request received to get all celebs.");
-        List<Celeb> result = _service.GetAll();
+        Console.WriteLine($"[Controller: GetAll] 📥 Request received to get all celebs. Search: {search ?? "none"}");
+        List<Celeb> result = _service.GetAll(search);
         Console.WriteLine($"[Controller: GetAll] ✅ Returned {result.Count} celebs.");
         return Ok(result);
     }

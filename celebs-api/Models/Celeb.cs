@@ -8,7 +8,7 @@ namespace CelebApi.Models
         public string? Name { get; set; }
         public string? BirthDate { get; set; }
         public string? Gender { get; set; }
-        public string? Role { get; set; }
+        public List<string> Roles { get; set; } = new List<string>();
         public string? Image { get; set; }
     }
 }
