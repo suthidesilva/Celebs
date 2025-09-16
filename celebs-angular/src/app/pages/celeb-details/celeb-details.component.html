@@ -1,0 +1,193 @@
+<div class="min-h-screen bg-gray-100 p-8">
+  <div class="max-w-4xl mx-auto">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-8">
+      <button
+        (click)="goBack()"
+        class="flex items-center text-gray-600 hover:text-gray-800 transition-colors"
+      >
+        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Back to List
+      </button>
+      
+      <div class="flex gap-4">
+        <button
+          *ngIf="!editing"
+          (click)="toggleEdit()"
+          class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+        >
+          Edit
+        </button>
+        <button
+          *ngIf="editing"
+          (click)="reset()"
+          class="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
+        >
+          Reset
+        </button>
+        <button
+          *ngIf="editing"
+          (click)="save()"
+          [disabled]="saving"
+          class="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors disabled:opacity-50"
+        >
+          {{saving ? 'Saving...' : 'Save'}}
+        </button>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="flex justify-center items-center min-h-96">
+      <svg class="animate-spin h-12 w-12 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+      </svg>
+    </div>
+
+    <!-- Content -->
+    <div *ngIf="!loading && celeb" class="bg-white rounded-2xl shadow-lg overflow-hidden">
+      <div class="md:flex">
+        <!-- Image Section -->
+        <div class="md:w-1/3">
+          <img
+            [src]="celeb.image"
+            [alt]="celeb.name"
+            class="w-full h-96 md:h-full object-cover"
+          />
+        </div>
+        
+        <!-- Details Section -->
+        <div class="md:w-2/3 p-8">
+          <h1 class="text-4xl font-bold text-gray-900 mb-6">{{celeb.name}}</h1>
+          
+          <div class="space-y-6">
+            <!-- Name Field -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+              <input
+                *ngIf="editing"
+                [(ngModel)]="celeb.name"
+                type="text"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Enter celebrity name"
+              />
+              <p *ngIf="!editing" class="text-lg text-gray-900">{{celeb.name}}</p>
+            </div>
+
+            <!-- Gender Field -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+              <select
+                *ngIf="editing"
+                [(ngModel)]="celeb.gender"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+              <p *ngIf="!editing" class="text-lg text-gray-900">{{celeb.gender}}</p>
+            </div>
+
+            <!-- Birth Date Field -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Birth Date</label>
+              <input
+                *ngIf="editing"
+                [(ngModel)]="celeb.birthDate"
+                type="date"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+              <p *ngIf="!editing" class="text-lg text-gray-900">{{celeb.birthDate || 'Unknown'}}</p>
+            </div>
+
+            <!-- Roles Field -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Roles</label>
+              <div *ngIf="editing" class="space-y-2">
+                <div
+                  *ngFor="let role of celeb.roles; let i = index; trackBy: trackByIndex"
+                  class="flex items-center gap-2"
+                >
+                  <input
+                    [(ngModel)]="celeb.roles[i]"
+                    type="text"
+                    class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Enter role"
+                  />
+                  <button
+                    (click)="removeRole(i)"
+                    type="button"
+                    class="px-3 py-2 text-red-600 hover:text-red-800 transition-colors"
+                  >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                  </button>
+                </div>
+                <button
+                  (click)="addRole()"
+                  type="button"
+                  class="px-4 py-2 text-blue-600 hover:text-blue-800 transition-colors flex items-center gap-2"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                  </svg>
+                  Add Role
+                </button>
+              </div>
+              <div *ngIf="!editing">
+                <p *ngIf="celeb.roles && celeb.roles.length > 0" class="text-lg text-gray-900">
+                  {{celeb.roles.join(', ')}}
+                </p>
+                <p *ngIf="!celeb.roles || celeb.roles.length === 0" class="text-lg text-gray-500 italic">
+                  No roles specified
+                </p>
+              </div>
+            </div>
+
+            <!-- Image URL Field -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Image URL</label>
+              <input
+                *ngIf="editing"
+                [(ngModel)]="celeb.image"
+                type="url"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Enter image URL"
+              />
+              <p *ngIf="!editing" class="text-lg text-gray-900 break-all">{{celeb.image || 'No image'}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Save Confirmation Dialog -->
+  <app-confirmation-dialog
+    [isVisible]="showSaveConfirmation"
+    title="Save Changes"
+    message="Are you sure you want to save the changes to this celebrity?"
+    confirmText="Save"
+    cancelText="Cancel"
+    confirmButtonClass="bg-green-500 hover:bg-green-600"
+    (confirm)="confirmSave()"
+    (cancel)="cancelSave()"
+  ></app-confirmation-dialog>
+
+  <!-- Reset Confirmation Dialog -->
+  <app-confirmation-dialog
+    [isVisible]="showResetConfirmation"
+    title="Reset Changes"
+    message="Are you sure you want to discard all changes and return to the original data?"
+    confirmText="Reset"
+    cancelText="Cancel"
+    confirmButtonClass="bg-orange-500 hover:bg-orange-600"
+    (confirm)="confirmReset()"
+    (cancel)="cancelReset()"
+  ></app-confirmation-dialog>
+</div>

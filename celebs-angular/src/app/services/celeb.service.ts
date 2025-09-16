@@ -12,7 +12,7 @@ export class CelebService {
 
   constructor(private http: HttpClient) {}
 
-  getAllCelebs(sortBy: string | null): Observable<Celeb[]> {
+  getAllCelebs(sortBy: string | null, search?: string): Observable<Celeb[]> {
     if (!sortBy) {
       sortBy = appConstants.defaultSortBy;
     }
@@ -25,7 +25,19 @@ export class CelebService {
     params.append('sortByName', String(sortBy === 'name'));
     params.append('sortByDate', String(sortBy === 'date'));
     
+    if (search && search.trim()) {
+      params.append('search', search.trim());
+    }
+    
     return this.http.get<Celeb[]>(`${this.baseUrl}/v1/celebs?${params.toString()}`);
+  }
+
+  getCelebById(id: string): Observable<Celeb> {
+    return this.http.get<Celeb>(`${this.baseUrl}/v1/${id}`);
+  }
+
+  updateCeleb(id: string, celeb: Partial<Celeb>): Observable<Celeb> {
+    return this.http.put<Celeb>(`${this.baseUrl}/v1/celeb/${id}`, celeb);
   }
 
   deleteCeleb(id: string): Observable<void> {

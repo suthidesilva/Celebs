@@ -10,6 +10,7 @@
     [viewMode]="viewMode"
     (toggleView)="toggleViewMode()"
     (reset)="handleReset()"
+    (searchChange)="onSearchChange($event)"
   ></app-celeb-toolbar>
 
   <div *ngIf="loading" class="flex justify-center items-center min-h-screen">
@@ -28,7 +29,7 @@
         : 'flex flex-col flex-wrap gap-2'"
     >
       <div
-        *ngFor="let celeb of celebs; let i = index"
+        *ngFor="let celeb of filteredCelebs; let i = index"
         cdkDrag
         [cdkDragData]="celeb"
         class="cursor-move"
