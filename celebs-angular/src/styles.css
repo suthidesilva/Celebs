@@ -1,3 +1,121 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Royal Purple & Black Theme Global Styles */
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+  
+  body {
+    @apply bg-midnight-950 text-royal-100 font-sans antialiased;
+    background: linear-gradient(135deg, #020617 0%, #1e293b 50%, #3b0764 100%);
+    min-height: 100vh;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Glass Card Effect */
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-glass;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  }
+  
+  .glass-card-dark {
+    @apply bg-black/20 backdrop-blur-md border border-royal-500/30 shadow-glass-dark;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(124, 58, 237, 0.05) 100%);
+  }
+  
+  /* Royal Button Styles */
+  .btn-royal {
+    @apply bg-royal-gradient text-white font-semibold px-6 py-3 rounded-xl 
+           shadow-royal-glow hover:shadow-purple-glow transition-all duration-300 
+           hover:scale-105 active:scale-95 border border-royal-400/50;
+    background: linear-gradient(135deg, #a855f7 0%, #7c3aed 50%, #581c87 100%);
+  }
+  
+  .btn-royal-secondary {
+    @apply bg-midnight-800/50 text-royal-200 font-semibold px-6 py-3 rounded-xl 
+           border border-royal-500/50 hover:border-royal-400 hover:bg-royal-900/30 
+           transition-all duration-300 hover:scale-105 active:scale-95;
+  }
+  
+  .btn-gold {
+    @apply bg-gold-gradient text-midnight-900 font-bold px-6 py-3 rounded-xl 
+           shadow-gold-glow hover:shadow-gold-glow transition-all duration-300 
+           hover:scale-105 active:scale-95;
+  }
+  
+  /* Input Styles */
+  .input-royal {
+    @apply bg-midnight-800/50 border border-royal-500/50 text-royal-100 
+           placeholder-royal-300 focus:border-royal-400 focus:ring-2 
+           focus:ring-royal-400/20 rounded-xl px-4 py-3 transition-all duration-300;
+  }
+  
+  /* Text Styles */
+  .text-royal-gradient {
+    @apply bg-gradient-to-r from-royal-400 via-royal-300 to-gold-400 bg-clip-text text-transparent;
+  }
+  
+  .text-gold-gradient {
+    @apply bg-gradient-to-r from-gold-400 via-gold-300 to-gold-200 bg-clip-text text-transparent;
+  }
+  
+  /* Glow Effects */
+  .glow-royal {
+    @apply shadow-royal-glow;
+    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.3));
+  }
+  
+  .glow-purple {
+    @apply shadow-purple-glow;
+    filter: drop-shadow(0 0 8px rgba(124, 58, 237, 0.4));
+  }
+  
+  .glow-gold {
+    @apply shadow-gold-glow;
+    filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.3));
+  }
+  
+  /* Hover Effects */
+  .hover-lift {
+    @apply transition-all duration-300 hover:scale-105 hover:-translate-y-1;
+  }
+  
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-royal-glow hover:shadow-purple-glow;
+  }
+  
+  /* Animated Background */
+  .royal-bg {
+    background: linear-gradient(135deg, #020617 0%, #1e293b 25%, #3b0764 50%, #581c87 75%, #7c3aed 100%);
+    background-size: 400% 400%;
+    animation: royalShift 15s ease infinite;
+  }
+  
+  @keyframes royalShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+}
+
+@layer utilities {
+  .text-shadow-royal {
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+  }
+  
+  .text-shadow-gold {
+    text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+  }
+  
+  .backdrop-blur-glass {
+    backdrop-filter: blur(16px) saturate(180%);
+  }
+}

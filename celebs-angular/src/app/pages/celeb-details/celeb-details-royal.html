@@ -120,49 +120,17 @@
               <p *ngIf="!editing" class="text-lg text-royal-200 font-medium">{{celeb.birthDate || 'Unknown'}}</p>
             </div>
 
-            <!-- Roles Field -->
+            <!-- Role Field -->
             <div>
-              <label class="block text-sm font-medium text-gold-400 mb-2">Roles</label>
-              <div *ngIf="editing" class="space-y-2">
-                <div
-                  *ngFor="let role of celeb.roles; let i = index; trackBy: trackByIndex"
-                  class="flex items-center gap-2"
-                >
-                  <input
-                    [(ngModel)]="celeb.roles[i]"
-                    type="text"
-                    class="input-royal flex-1"
-                    placeholder="Enter role"
-                  />
-                  <button
-                    (click)="removeRole(i)"
-                    type="button"
-                    class="px-3 py-2 text-royal-400 hover:text-gold-400 transition-colors"
-                  >
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                  </button>
-                </div>
-                <button
-                  (click)="addRole()"
-                  type="button"
-                  class="btn-royal-secondary flex items-center gap-2"
-                >
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                  </svg>
-                  Add Role
-                </button>
-              </div>
-              <div *ngIf="!editing">
-                <p *ngIf="celeb.roles && celeb.roles.length > 0" class="text-lg text-royal-200 font-medium">
-                  {{celeb.roles.join(', ')}}
-                </p>
-                <p *ngIf="!celeb.roles || celeb.roles.length === 0" class="text-lg text-royal-300 italic">
-                  No roles specified
-                </p>
-              </div>
+              <label class="block text-sm font-medium text-gold-400 mb-2">Role</label>
+              <input
+                *ngIf="editing"
+                [(ngModel)]="celeb.role"
+                type="text"
+                class="input-royal w-full"
+                placeholder="e.g., Actor, Director"
+              />
+              <p *ngIf="!editing" class="text-lg text-royal-200 font-medium">{{celeb.role}}</p>
             </div>
 
             <!-- Image URL Field -->

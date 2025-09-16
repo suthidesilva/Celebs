@@ -7,12 +7,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Celeb } from '../../models/celeb';
 import { CelebService } from '../../services/celeb.service';
 import { appConstants } from '../../config/app.constants';
-import { ConfirmationDialogComponent } from '../../components/confirmation-dialog/confirmation-dialog.component';
-
 @Component({
   selector: 'app-celeb-details',
   standalone: true,
-  imports: [CommonModule, FormsModule, ConfirmationDialogComponent],
+  imports: [CommonModule, FormsModule],
   templateUrl: './celeb-details.component.html',
   styleUrls: ['./celeb-details.component.css']
 })
