@@ -2,15 +2,7 @@
 ![pic1.png](https://github.com/suthidesilva/Celebs/blob/master/pic1.png)
 ![pic2.png](https://github.com/suthidesilva/Celebs/blob/master/pic2.png)
 
-Frontend Layer:     Angular (TypeScript + Tailwind)
-                           OR
-                   React (TypeScript + Tailwind)
-                           ↕
-API Layer:         ASP.NET Core Web API (.NET 8)
-                           ↕
-Data Layer:        JSON Files (SharedData folder)
-                           ↑
-Scraper:           Console App (.NET 8 + HtmlAgilityPack)
+Frontend Layer:  Angular (TypeScript + Tailwind <--->  API Layer: ASP.NET Core Web API (.NET 8) <---> Data Layer: JSON Files (SharedData folder) <--- Scraper: Console App (.NET 8 + HtmlAgilityPack)
 
 This project is a professional-grade full-stack web application that scrapes data from IMDb, stores it in JSON files, and presents a user-friendly UI for managing a list of celebrities.
 
@@ -84,6 +76,7 @@ cd ../celeb-angular
 npm i
 npm start
 UI available at: http://localhost:4200
+
 
 
 
