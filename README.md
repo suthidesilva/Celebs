@@ -1,5 +1,6 @@
 # ⭐ Celebrity Full-Stack Application ⭐
 
+![pic2.png](https://github.com/suthidesilva/Celebs/blob/master/pic2.png)
 This project is a professional-grade full-stack web application that scrapes data from IMDb, stores it in JSON files, and presents a user-friendly UI for managing a list of celebrities.
 
 The system is designed to demonstrate modern software engineering practices, including multi-project structuring, API development, parallel scraping, UI configuration, and clean coding principles.
@@ -72,4 +73,5 @@ cd ../celeb-angular
 npm i
 npm start
 UI available at: http://localhost:4200
+
 
